@@ -1,30 +1,26 @@
 import discord
+
+import os
+
 from discord.ext import commands
+from discord.utils import get
+from discord import FFmpegPCMAudio
+from discord import TextChannel
+from youtube_dl import YoutubeDL
 
-bot = commands.Bot(command_prefix="esp")
 
-#Prefix = esp
+client = commands.Bot(command_prefix='*')  # prefix our commands with 'esp!'
+
 #Invite link: https://discord.com/oauth2/authorize?client_id=1013465974881660999&scope=bot&permissions=8
 
-@bot.event
-async def on_ready():
-    await bot.change_presence(activity=discord.Game(name="^help priekš vairāk informācijas!"))
-    print(f'{bot.user} succesfully logged in!')
 
+@client.command()
+async def ping(ctx):
+    await ctx.send("Pong!")
 
-@bot.event
-async def on_message(message):
-    # All the bots commands are here!!! :)
+@client.command()
+async def clear(ctx, amount=10):
+    await ctx.channel.purge(limit=amount)
+    await ctx.send("Messages have been deleted!")
 
-    if message.author == bot.user:
-        return
-
-    if message.content == 'esptest':
-        await message.channel.send(f' response')
-
-    if message.content == 'espstory':
-        await message.channel.send(f'There really is no story I just like coffee!')
-
-    await bot.process_commands(message)
-
-bot.run('MTAxMzQ2NTk3NDg4MTY2MDk5OQ.GGxKY4.pu2ZT922pvyxdtUBKM4vvhyZ-F8Jkxby2SIbHU')
+client.run('MTAxMzQ2NTk3NDg4MTY2MDk5OQ.GGxKY4.pu2ZT922pvyxdtUBKM4vvhyZ-F8Jkxby2SIbHU')
