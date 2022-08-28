@@ -23,4 +23,4 @@ async def clear(ctx, amount=10):
     await ctx.channel.purge(limit=amount)
     await ctx.send("Messages have been deleted!")
 
-client.run('MTAxMzQ2NTk3NDg4MTY2MDk5OQ.GGxKY4.pu2ZT922pvyxdtUBKM4vvhyZ-F8Jkxby2SIbHU')
+client.run('')
